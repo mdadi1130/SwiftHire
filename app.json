@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "SwiftHire",
+    "slug": "swifthire",
+    "version": "1.0.0",
+    "sdkVersion": "43.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "android": {
+      "package": "com.swifthireapp.swifthire"
+    },
+    "ios": {
+      "bundleIdentifier": "com.swifthireapp.swifthire"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+    "appName": "SwiftHireAnalytics",
+    "roleName": "pinpointLambdaRole72c503d7",
+    "cloudformationPolicyName": "cloudformationPolicy72c503d7",
+    "cloudWatchPolicyName": "cloudWatchPolicy72c503d7",
+    "pinpointPolicyName": "pinpointPolicy72c503d7",
+    "authPolicyName": "pinpoint_amplify_72c503d7",
+    "unauthPolicyName": "pinpoint_amplify_72c503d7",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}
