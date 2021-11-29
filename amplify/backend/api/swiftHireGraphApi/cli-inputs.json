@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "swiftHireGraphApi",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/michaeldadi/OneDrive/Freelance/SwiftHire/amplify/backend/api/swiftHireGraphApi/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 7,
+      "apiKeyExpirationDate": "2021-12-03T18:30:09.110Z",
+      "keyDescription": ""
+    },
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "AUTOMERGE"
+      }
+    }
+  }
+}

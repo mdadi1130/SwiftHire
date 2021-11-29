@@ -1,6 +1,9 @@
 export type AmplifyDependentResourcesAttributes = {
     "auth": {
-        "SwiftHire": {
+        "userPoolGroups": {
+            "swiftHireUserPoolGroupGroupRole": "string"
+        },
+        "swiftHireAuth": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
             "HostedUIDomain": "string",
@@ -10,26 +13,41 @@ export type AmplifyDependentResourcesAttributes = {
             "UserPoolName": "string",
             "AppClientIDWeb": "string",
             "AppClientID": "string",
-            "CreatedSNSRole": "string"
+            "GoogleWebClient": "string"
+        }
+    },
+    "function": {
+        "swiftHireAuthCustomMessage": {
+            "Name": "string",
+            "Arn": "string",
+            "LambdaExecutionRole": "string",
+            "Region": "string"
+        },
+        "swiftHireAuthPostConfirmation": {
+            "Name": "string",
+            "Arn": "string",
+            "LambdaExecutionRole": "string",
+            "Region": "string"
         }
     },
     "api": {
-        "swifthire": {
+        "swiftHireGraphApi": {
+            "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
         }
     },
     "storage": {
-        "s3cd77b67f": {
+        "swiftHireUserStorage": {
             "BucketName": "string",
             "Region": "string"
         }
     },
     "analytics": {
-        "SwiftHireAnalytics": {
-            "Region": "string",
-            "Id": "string",
-            "appName": "string"
+        "swifthireKinesis": {
+            "kinesisStreamArn": "string",
+            "kinesisStreamId": "string",
+            "kinesisStreamShardCount": "string"
         }
     }
 }

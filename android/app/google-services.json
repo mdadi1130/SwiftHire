@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "782284386131",
+    "project_id": "swifthire-330222",
+    "storage_bucket": "swifthire-330222.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782284386131:android:4a98434996df76e0ba3ba6",
+        "android_client_info": {
+          "package_name": "com.SwiftHireApp.SwiftHire"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "782284386131-mravvfehmu9v8jkqqp0r4ilc8scnj1ke.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdAWtwenlmdJxg_x_Ss9MDfuxjfK6oBGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "782284386131-mravvfehmu9v8jkqqp0r4ilc8scnj1ke.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "782284386131-p9nnbh23sl5hv5amnqc8loaiamc649o4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.swifthireapp.swifthire"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

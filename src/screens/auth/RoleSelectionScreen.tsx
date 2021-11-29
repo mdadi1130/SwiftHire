@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, Dimensions} from "react-native";
 
 import {Button, Text} from "react-native-elements";
-import {WINDOW_HEIGHT} from "../../utils/Constants";
+import {COLOR_PRIMARY, WINDOW_HEIGHT} from "../../utils/Constants";
 
 export default function RoleSelectionScreen(props) {
     return (
@@ -40,13 +40,13 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 60,
         fontFamily: 'Quicksand_600SemiBold',
-        color: 'white',
+        color: COLOR_PRIMARY,
         textAlign: 'center',
         marginTop: WINDOW_HEIGHT * 0.2
     },
     subtitle: {
         fontSize: 40,
-        color: 'white',
+        color: COLOR_PRIMARY,
         textAlign: 'center',
         margin: WINDOW_HEIGHT * 0.1
     },

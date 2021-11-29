@@ -1,0 +1,26 @@
+{
+  "trigger": true,
+  "modules": [
+    "verification-link"
+  ],
+  "parentResource": "swiftHireAuth",
+  "functionName": "swiftHireAuthCustomMessage",
+  "resourceName": "swiftHireAuthCustomMessage",
+  "parentStack": "auth",
+  "triggerEnvs": [
+    {
+      "key": "RESOURCENAME",
+      "value": "resourceName"
+    }
+  ],
+  "triggerDir": "/opt/homebrew/lib/node_modules/@aws-amplify/cli/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/CustomMessage",
+  "triggerTemplate": "CustomMessage.json.ejs",
+  "triggerEventPath": "CustomMessage.event.json",
+  "roleName": "swiftHireAuthCustomMessage",
+  "skipEdit": true,
+  "REDIRECTURL": "http://localhost:3000/confirmed",
+  "EMAILSUBJECT": "Welcome to SwiftHire!",
+  "EMAILMESSAGE": "Thanks for joining SwiftHire! Your account has been registered successfully.",
+  "RESOURCENAME": "resourceName",
+  "enableCors": false
+}

@@ -1,26 +1,40 @@
 {
-  "dev": {
+  "staging": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-swifthire-dev-24341-authRole",
-      "UnauthRoleArn": "arn:aws:iam::480230309549:role/amplify-swifthire-dev-24341-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::480230309549:role/amplify-swifthire-dev-24341-authRole",
+      "AuthRoleName": "amplify-swifthire-staging-181443-authRole",
+      "UnauthRoleArn": "arn:aws:iam::480230309549:role/amplify-swifthire-staging-181443-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::480230309549:role/amplify-swifthire-staging-181443-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-swifthire-dev-24341-deployment",
-      "UnauthRoleName": "amplify-swifthire-dev-24341-unauthRole",
-      "StackName": "amplify-swifthire-dev-24341",
-      "StackId": "arn:aws:cloudformation:us-east-1:480230309549:stack/amplify-swifthire-dev-24341/bcee6cf0-2fde-11ec-ba8b-127a6f673029",
-      "AmplifyAppId": "d3h0uxg6gn9l5r"
+      "DeploymentBucketName": "amplify-swifthire-staging-181443-deployment",
+      "UnauthRoleName": "amplify-swifthire-staging-181443-unauthRole",
+      "StackName": "amplify-swifthire-staging-181443",
+      "StackId": "arn:aws:cloudformation:us-east-1:480230309549:stack/amplify-swifthire-staging-181443/bad69da0-4ee4-11ec-915a-0e9d139a5f13",
+      "AmplifyAppId": "dwu8lajrqsl5k",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-swifthire-staging-181443-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
-      "notifications": {
-        "Pinpoint": {
-          "Name": "SwiftHireAnalytics-dev",
-          "Id": "376d046f7cfe4d02a5f75f6d5dfe1675",
-          "Region": "us-east-1"
-        }
-      },
       "auth": {
-        "SwiftHire": {}
+        "swiftHireAuth": {
+          "googleClientId": "457008041065-tr0u1s004pja5vc52j4qoe9q0l3rakj8.apps.googleusercontent.com"
+        },
+        "true": {
+          "googleClientId": "457008041065-tr0u1s004pja5vc52j4qoe9q0l3rakj8.apps.googleusercontent.com"
+        },
+        "userPoolGroups": {}
+      },
+      "function": {
+        "swiftHireAuthCustomMessage": {
+          "REDIRECTURL": "http://localhost:3000/confirmed",
+          "EMAILSUBJECT": "Welcome to SwiftHire!",
+          "EMAILMESSAGE": "Thanks for joining SwiftHire! Your account has been registered successfully.",
+          "deploymentBucketName": "amplify-swifthire-staging-181443-deployment",
+          "s3Key": "amplify-builds/swiftHireAuthCustomMessage-69342f704f5543694a53-build.zip"
+        },
+        "swiftHireAuthPostConfirmation": {
+          "GROUP": "swiftHireUserPoolGroup",
+          "deploymentBucketName": "amplify-swifthire-staging-181443-deployment",
+          "s3Key": "amplify-builds/swiftHireAuthPostConfirmation-55747365783962774142-build.zip"
+        }
       }
     }
   }

@@ -1,0 +1,18 @@
+{
+  "trigger": true,
+  "modules": [
+    "add-to-group"
+  ],
+  "parentResource": "swiftHireAuth",
+  "functionName": "swiftHireAuthPostConfirmation",
+  "resourceName": "swiftHireAuthPostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": [],
+  "triggerDir": "/opt/homebrew/lib/node_modules/@aws-amplify/cli/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "triggerEventPath": "PostConfirmation.event.json",
+  "roleName": "swiftHireAuthPostConfirmation",
+  "skipEdit": true,
+  "GROUP": "swiftHireUserPoolGroup",
+  "enableCors": false
+}

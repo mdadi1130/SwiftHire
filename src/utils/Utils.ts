@@ -3,6 +3,8 @@ import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from 'expo-file-system';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {API, Auth} from "aws-amplify";
+import notifee from '@notifee/react-native';
+import {CommonActions} from "@react-navigation/native";
 
 const channelNameMaxMembers = 3;
 const channelNameEllipsisLength = 32;
@@ -32,6 +34,69 @@ export const createUnreadMessageCount = (channel) => {
         return `${maxUnreadMessageCount}+`;
     } else {
         return `${channel.unreadMessageCount}`;
+    }
+};
+
+export const onRemoteMessage = async (remoteMessage) => {
+    const channelId = await notifee.createChannel ({
+        id: 'SendbirdNotificationChannel',
+        name: 'SwiftHire Chat'
+    });
+
+    if (remoteMessage && remoteMessage.data) {
+        let pushActionId = 'SwiftHireNotification-';
+
+        const message = JSON.parse(remoteMessage.data.sendbird);
+        let channelUrl = null;
+        if (message && message.channel) {
+            channelUrl = message.channel['channel_url'];
+        }
+        pushActionId += channelUrl;
+
+        await AsyncStorage.setItem(pushActionId, JSON.stringify(remoteMessage));
+
+        await notifee.displayNotification({
+            title: 'SwiftHire Chat',
+            body: remoteMessage.data.message,
+            android: {
+                channelId,
+                pressAction: {
+                    id: pushActionId,
+                    launchActivity: 'default'
+                }
+            }
+        });
+    }
+};
+
+export const handleNotificationAction = async (navigation, sendbird, currentUser) => {
+    const initialNotification = await notifee.getInitialNotification();
+    if (initialNotification && initialNotification.pressAction) {
+        const remoteMessage = JSON.parse(await AsyncStorage.getItem(initialNotification.pressAction.id));
+        if (remoteMessage && remoteMessage.data) {
+            const message = JSON.parse(remoteMessage.data.sendbird);
+            if (message && message.channel) {
+                const channel = await sendbird.groupChannel.getChannel(message.channel['channel_url']);
+                navigation.dispatch(state => {
+                    const channelsIndex = state.route.findIndex(route => route.name === 'Channels');
+                    const newRoute = {name: 'Chat', params: {channel, currentUser}};
+                    const routes = [...state.routes.slice(0, channelsIndex + 1), newRoute];
+                    const action = CommonActions.reset({...state, routes, index: routes.length - 1});
+
+                    const chatRoute = state.routes.find(route => route.name === 'Chat');
+                    if (chatRoute && chatRoute.params && chatRoute.params.channel) {
+                        if (chatRoute.params.channel.url === channel.url) {
+                            return CommonActions.reset(state);
+                        } else {
+                            return action;
+                        }
+                    } else {
+                        return action;
+                    }
+                });
+                await AsyncStorage.removeItem(initialNotification.pressAction.id);
+            }
+        }
     }
 };
 

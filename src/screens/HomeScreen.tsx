@@ -35,7 +35,7 @@ export default function HomeScreen(props) {
             const jobs = jobData['data'].listJobs.items
             setJobs(jobs)
         } catch (err) {
-            console.log('error fetching jobs')
+            console.error('error fetching jobs: ', err);
         }
     };
 

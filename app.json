@@ -2,17 +2,30 @@
   "expo": {
     "name": "SwiftHire",
     "slug": "swifthire",
-    "version": "1.0.0",
-    "sdkVersion": "43.0.0",
+    "version": "1.1.0",
+    "scheme": "swifthire",
     "platforms": [
       "ios",
       "android",
       "web"
     ],
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "swifthire",
+            "project": "swifthire",
+            "authToken": "215c4161d3754d02a9b2eb208f6896166af11bfd6deb4f489f7c3a1d4b18a54a"
+          }
+        }
+      ]
+    },
     "android": {
-      "package": "com.swifthireapp.swifthire"
+      "versionCode": 1
     },
     "ios": {
+      "buildNumber": "1.1.2",
       "bundleIdentifier": "com.swifthireapp.swifthire"
     }
   }

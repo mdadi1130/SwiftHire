@@ -1,0 +1,13 @@
+{
+  "resourceName": "swiftHireUserStorage",
+  "policyUUID": "247e421f",
+  "bucketName": "swifthire04b6f8eb79d047fcb6a75ede49b2cfec",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE"
+}
