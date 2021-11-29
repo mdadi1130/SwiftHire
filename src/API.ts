@@ -2,25 +2,19 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateJobInput = {
+export type CreateTodoInput = {
   id?: string | null,
-  company: string,
-  title: string,
-  description: string,
-  salary: string,
-  image?: string | null,
+  name: string,
+  description?: string | null,
   _version?: number | null,
 };
 
-export type ModelJobConditionInput = {
-  company?: ModelStringInput | null,
-  title?: ModelStringInput | null,
+export type ModelTodoConditionInput = {
+  name?: ModelStringInput | null,
   description?: ModelStringInput | null,
-  salary?: ModelStringInput | null,
-  image?: ModelStringInput | null,
-  and?: Array< ModelJobConditionInput | null > | null,
-  or?: Array< ModelJobConditionInput | null > | null,
-  not?: ModelJobConditionInput | null,
+  and?: Array< ModelTodoConditionInput | null > | null,
+  or?: Array< ModelTodoConditionInput | null > | null,
+  not?: ModelTodoConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -63,47 +57,37 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type Job = {
-  __typename: "Job",
+export type Todo = {
+  __typename: "Todo",
   id: string,
-  company: string,
-  title: string,
-  description: string,
-  salary: string,
-  image?: string | null,
+  name: string,
+  description?: string | null,
+  createdAt: string,
+  updatedAt: string,
   _version: number,
   _deleted?: boolean | null,
   _lastChangedAt: number,
-  createdAt: string,
-  updatedAt: string,
-  owner?: string | null,
 };
 
-export type UpdateJobInput = {
+export type UpdateTodoInput = {
   id: string,
-  company?: string | null,
-  title?: string | null,
+  name?: string | null,
   description?: string | null,
-  salary?: string | null,
-  image?: string | null,
   _version?: number | null,
 };
 
-export type DeleteJobInput = {
+export type DeleteTodoInput = {
   id: string,
   _version?: number | null,
 };
 
-export type ModelJobFilterInput = {
+export type ModelTodoFilterInput = {
   id?: ModelIDInput | null,
-  company?: ModelStringInput | null,
-  title?: ModelStringInput | null,
+  name?: ModelStringInput | null,
   description?: ModelStringInput | null,
-  salary?: ModelStringInput | null,
-  image?: ModelStringInput | null,
-  and?: Array< ModelJobFilterInput | null > | null,
-  or?: Array< ModelJobFilterInput | null > | null,
-  not?: ModelJobFilterInput | null,
+  and?: Array< ModelTodoFilterInput | null > | null,
+  or?: Array< ModelTodoFilterInput | null > | null,
+  not?: ModelTodoFilterInput | null,
 };
 
 export type ModelIDInput = {
@@ -122,213 +106,177 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
-export type ModelJobConnection = {
-  __typename: "ModelJobConnection",
-  items?:  Array<Job | null > | null,
+export type ModelTodoConnection = {
+  __typename: "ModelTodoConnection",
+  items:  Array<Todo >,
   nextToken?: string | null,
   startedAt?: number | null,
 };
 
-export type CreateJobMutationVariables = {
-  input: CreateJobInput,
-  condition?: ModelJobConditionInput | null,
+export type CreateTodoMutationVariables = {
+  input: CreateTodoInput,
+  condition?: ModelTodoConditionInput | null,
 };
 
-export type CreateJobMutation = {
-  createJob?:  {
-    __typename: "Job",
+export type CreateTodoMutation = {
+  createTodo?:  {
+    __typename: "Todo",
     id: string,
-    company: string,
-    title: string,
-    description: string,
-    salary: string,
-    image?: string | null,
+    name: string,
+    description?: string | null,
+    createdAt: string,
+    updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
   } | null,
 };
 
-export type UpdateJobMutationVariables = {
-  input: UpdateJobInput,
-  condition?: ModelJobConditionInput | null,
+export type UpdateTodoMutationVariables = {
+  input: UpdateTodoInput,
+  condition?: ModelTodoConditionInput | null,
 };
 
-export type UpdateJobMutation = {
-  updateJob?:  {
-    __typename: "Job",
+export type UpdateTodoMutation = {
+  updateTodo?:  {
+    __typename: "Todo",
     id: string,
-    company: string,
-    title: string,
-    description: string,
-    salary: string,
-    image?: string | null,
+    name: string,
+    description?: string | null,
+    createdAt: string,
+    updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
   } | null,
 };
 
-export type DeleteJobMutationVariables = {
-  input: DeleteJobInput,
-  condition?: ModelJobConditionInput | null,
+export type DeleteTodoMutationVariables = {
+  input: DeleteTodoInput,
+  condition?: ModelTodoConditionInput | null,
 };
 
-export type DeleteJobMutation = {
-  deleteJob?:  {
-    __typename: "Job",
+export type DeleteTodoMutation = {
+  deleteTodo?:  {
+    __typename: "Todo",
     id: string,
-    company: string,
-    title: string,
-    description: string,
-    salary: string,
-    image?: string | null,
+    name: string,
+    description?: string | null,
+    createdAt: string,
+    updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
   } | null,
 };
 
-export type GetJobQueryVariables = {
+export type GetTodoQueryVariables = {
   id: string,
 };
 
-export type GetJobQuery = {
-  getJob?:  {
-    __typename: "Job",
+export type GetTodoQuery = {
+  getTodo?:  {
+    __typename: "Todo",
     id: string,
-    company: string,
-    title: string,
-    description: string,
-    salary: string,
-    image?: string | null,
+    name: string,
+    description?: string | null,
+    createdAt: string,
+    updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
   } | null,
 };
 
-export type ListJobsQueryVariables = {
-  filter?: ModelJobFilterInput | null,
+export type ListTodosQueryVariables = {
+  filter?: ModelTodoFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListJobsQuery = {
-  listJobs?:  {
-    __typename: "ModelJobConnection",
-    items?:  Array< {
-      __typename: "Job",
+export type ListTodosQuery = {
+  listTodos?:  {
+    __typename: "ModelTodoConnection",
+    items:  Array< {
+      __typename: "Todo",
       id: string,
-      company: string,
-      title: string,
-      description: string,
-      salary: string,
-      image?: string | null,
+      name: string,
+      description?: string | null,
+      createdAt: string,
+      updatedAt: string,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-    } | null > | null,
+    } >,
     nextToken?: string | null,
     startedAt?: number | null,
   } | null,
 };
 
-export type SyncJobsQueryVariables = {
-  filter?: ModelJobFilterInput | null,
+export type SyncTodosQueryVariables = {
+  filter?: ModelTodoFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
   lastSync?: number | null,
 };
 
-export type SyncJobsQuery = {
-  syncJobs?:  {
-    __typename: "ModelJobConnection",
-    items?:  Array< {
-      __typename: "Job",
+export type SyncTodosQuery = {
+  syncTodos?:  {
+    __typename: "ModelTodoConnection",
+    items:  Array< {
+      __typename: "Todo",
       id: string,
-      company: string,
-      title: string,
-      description: string,
-      salary: string,
-      image?: string | null,
+      name: string,
+      description?: string | null,
+      createdAt: string,
+      updatedAt: string,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-    } | null > | null,
+    } >,
     nextToken?: string | null,
     startedAt?: number | null,
   } | null,
 };
 
-export type OnCreateJobSubscription = {
-  onCreateJob?:  {
-    __typename: "Job",
+export type OnCreateTodoSubscription = {
+  onCreateTodo?:  {
+    __typename: "Todo",
     id: string,
-    company: string,
-    title: string,
-    description: string,
-    salary: string,
-    image?: string | null,
+    name: string,
+    description?: string | null,
+    createdAt: string,
+    updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
   } | null,
 };
 
-export type OnUpdateJobSubscription = {
-  onUpdateJob?:  {
-    __typename: "Job",
+export type OnUpdateTodoSubscription = {
+  onUpdateTodo?:  {
+    __typename: "Todo",
     id: string,
-    company: string,
-    title: string,
-    description: string,
-    salary: string,
-    image?: string | null,
+    name: string,
+    description?: string | null,
+    createdAt: string,
+    updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
   } | null,
 };
 
-export type OnDeleteJobSubscription = {
-  onDeleteJob?:  {
-    __typename: "Job",
+export type OnDeleteTodoSubscription = {
+  onDeleteTodo?:  {
+    __typename: "Todo",
     id: string,
-    company: string,
-    title: string,
-    description: string,
-    salary: string,
-    image?: string | null,
+    name: string,
+    description?: string | null,
+    createdAt: string,
+    updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
   } | null,
 };

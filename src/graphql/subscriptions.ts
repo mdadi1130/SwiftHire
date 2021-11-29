@@ -2,57 +2,45 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateJob = /* GraphQL */ `
-  subscription OnCreateJob {
-    onCreateJob {
+export const onCreateTodo = /* GraphQL */ `
+  subscription OnCreateTodo {
+    onCreateTodo {
       id
-      company
-      title
+      name
       description
-      salary
-      image
+      createdAt
+      updatedAt
       _version
       _deleted
       _lastChangedAt
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;
-export const onUpdateJob = /* GraphQL */ `
-  subscription OnUpdateJob {
-    onUpdateJob {
+export const onUpdateTodo = /* GraphQL */ `
+  subscription OnUpdateTodo {
+    onUpdateTodo {
       id
-      company
-      title
+      name
       description
-      salary
-      image
+      createdAt
+      updatedAt
       _version
       _deleted
       _lastChangedAt
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;
-export const onDeleteJob = /* GraphQL */ `
-  subscription OnDeleteJob {
-    onDeleteJob {
+export const onDeleteTodo = /* GraphQL */ `
+  subscription OnDeleteTodo {
+    onDeleteTodo {
       id
-      company
-      title
+      name
       description
-      salary
-      image
+      createdAt
+      updatedAt
       _version
       _deleted
       _lastChangedAt
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;

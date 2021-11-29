@@ -2,58 +2,50 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getJob = /* GraphQL */ `
-  query GetJob($id: ID!) {
-    getJob(id: $id) {
+export const getTodo = /* GraphQL */ `
+  query GetTodo($id: ID!) {
+    getTodo(id: $id) {
       id
-      company
-      title
+      name
       description
-      salary
-      image
+      createdAt
+      updatedAt
       _version
       _deleted
       _lastChangedAt
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;
-export const listJobs = /* GraphQL */ `
-  query ListJobs(
-    $filter: ModelJobFilterInput
+export const listTodos = /* GraphQL */ `
+  query ListTodos(
+    $filter: ModelTodoFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listJobs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        company
-        title
+        name
         description
-        salary
-        image
+        createdAt
+        updatedAt
         _version
         _deleted
         _lastChangedAt
-        createdAt
-        updatedAt
-        owner
       }
       nextToken
       startedAt
     }
   }
 `;
-export const syncJobs = /* GraphQL */ `
-  query SyncJobs(
-    $filter: ModelJobFilterInput
+export const syncTodos = /* GraphQL */ `
+  query SyncTodos(
+    $filter: ModelTodoFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncJobs(
+    syncTodos(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -61,17 +53,13 @@ export const syncJobs = /* GraphQL */ `
     ) {
       items {
         id
-        company
-        title
+        name
         description
-        salary
-        image
+        createdAt
+        updatedAt
         _version
         _deleted
         _lastChangedAt
-        createdAt
-        updatedAt
-        owner
       }
       nextToken
       startedAt

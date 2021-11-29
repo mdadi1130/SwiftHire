@@ -1,15 +1,17 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {StyleSheet, TouchableOpacity} from "react-native";
 
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 import {useDispatch} from "react-redux";
 import {authenticate} from "../../redux/Actions";
-import {Button, Input, Overlay, Text, Image} from "react-native-elements";
+import {Button, Image, Input, Overlay, Text} from "react-native-elements";
 import {COLOR_PRIMARY, WINDOW_HEIGHT, WINDOW_WIDTH} from "../../utils/Constants";
 import {withAppContext} from "../../utils/Context";
+import {Auth} from "aws-amplify";
+import {CognitoHostedUIIdentityProvider} from "@aws-amplify/auth";
 
 const LoginScreen = (props) => {
-    const {sendbird, googleSignIn} = props;
+    const {sendbird} = props;
 
     const [visible, setVisible] = useState(false);
 
@@ -43,6 +45,10 @@ const LoginScreen = (props) => {
             console.log('error signing in', error);
         }
     };
+
+    const googleSignIn = useCallback(() => {
+        Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Google});
+    }, []);
 
     return (
         <KeyboardAwareScrollView scrollEnabled={false}>

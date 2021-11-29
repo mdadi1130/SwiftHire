@@ -1,12 +1,50 @@
 {
   "auth": {
-    "SwiftHire": {
+    "userPoolGroups": {
+      "service": "Cognito-UserPool-Groups",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "swiftHireAuth",
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID",
+            "IdentityPoolId"
+          ]
+        }
+      ]
+    },
+    "swiftHireAuth": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "swiftHireAuthCustomMessage",
+          "triggerProvider": "Cognito",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "swiftHireAuthPostConfirmation",
+          "triggerProvider": "Cognito",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        }
+      ],
       "customAuth": false,
       "frontendAuthConfig": {
-        "loginMechanisms": [
+        "socialProviders": [
+          "GOOGLE"
+        ],
+        "usernameAttributes": [
           "EMAIL"
         ],
         "signupAttributes": [
@@ -15,12 +53,7 @@
         ],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,
-          "passwordPolicyCharacters": [
-            "REQUIRES_LOWERCASE",
-            "REQUIRES_NUMBERS",
-            "REQUIRES_SYMBOLS",
-            "REQUIRES_UPPERCASE"
-          ]
+          "passwordPolicyCharacters": []
         },
         "mfaConfiguration": "OFF",
         "mfaTypes": [
@@ -32,8 +65,20 @@
       }
     }
   },
+  "function": {
+    "swiftHireAuthCustomMessage": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "swiftHireAuthPostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
   "api": {
-    "swifthire": {
+    "swiftHireGraphApi": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
@@ -42,41 +87,26 @@
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 7,
-              "description": "swifthire-apikey"
+              "apiKeyExpirationDate": "2021-12-03T18:30:09.110Z",
+              "description": ""
             }
           },
-          "additionalAuthenticationProviders": [
-            {
-              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-              "userPoolConfig": {
-                "userPoolId": "authSwiftHire"
-              }
-            },
-            {
-              "authenticationType": "AWS_IAM"
-            }
-          ]
+          "additionalAuthenticationProviders": []
         }
       }
     }
   },
   "storage": {
-    "s3cd77b67f": {
+    "swiftHireUserStorage": {
       "service": "S3",
-      "providerPlugin": "awscloudformation"
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
     }
   },
   "analytics": {
-    "SwiftHireAnalytics": {
-      "service": "Pinpoint",
+    "swifthireKinesis": {
+      "service": "Kinesis",
       "providerPlugin": "awscloudformation"
-    }
-  },
-  "function": {},
-  "notifications": {
-    "SwiftHireAnalytics": {
-      "service": "Pinpoint",
-      "channels": []
     }
   }
 }

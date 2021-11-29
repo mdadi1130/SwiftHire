@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
 import {StyleSheet, TouchableOpacity, View} from "react-native";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Text, Avatar, Icon, Button} from "react-native-elements";
 import {COLOR_PRIMARY} from "../../../utils/Constants";
 
 export default function SettingsScreen(props) {
     const [distance, setDistance] = useState(1);
+
+    const userAttrs = useSelector(state => state['AuthReducer'].user.attributes);
+    const name = userAttrs['name'];
 
     const dispatch = useDispatch();
 
@@ -23,7 +26,7 @@ export default function SettingsScreen(props) {
                         overlayContainerStyle={{backgroundColor: '#808080'}}
                     />
                     <View>
-                        <Text style={styles.settingLabel}>Name</Text>
+                        <Text style={styles.settingLabel}>{name}</Text>
                         <Text style={{marginTop: 4, marginLeft: 20}}>Personal Info</Text>
                     </View>
                 </View>

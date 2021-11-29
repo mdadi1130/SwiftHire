@@ -6,7 +6,7 @@ import {Text, Button, Input} from 'react-native-elements';
 import {Auth} from "aws-amplify";
 
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
-import {WINDOW_HEIGHT} from "../../utils/Constants";
+import {COLOR_PRIMARY, WINDOW_HEIGHT} from "../../utils/Constants";
 
 export default function RegistrationConfirmationScreen(props) {
     const username = props.route.params;
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 60,
         fontFamily: 'Quicksand_600SemiBold',
-        color: 'white',
+        color: COLOR_PRIMARY,
         textAlign: 'center',
         marginTop: WINDOW_HEIGHT * 0.08
     },

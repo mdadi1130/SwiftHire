@@ -1,9 +1,0 @@
-type Job @model @auth(rules: [{allow: public}, {allow: owner, operations: [create, update, delete]}]) {
-  id: ID!
-  company: String!
-  title: String!
-  description: String!
-  salary: String!
-  image: AWSURL
-}
- 

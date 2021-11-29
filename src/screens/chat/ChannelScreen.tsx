@@ -1,12 +1,13 @@
 import React, {useEffect, useLayoutEffect, useReducer, useState} from 'react';
-import {StyleSheet, AppState, FlatList, RefreshControl, SafeAreaView, StatusBar, TouchableOpacity, View} from "react-native";
+import {StyleSheet, AppState, FlatList, RefreshControl, SafeAreaView, TouchableOpacity, View} from "react-native";
 import {Icon, Overlay, SearchBar, Text} from "react-native-elements";
 import {ChannelsReducer} from "../../redux/reducers/ChannelsReducer";
 import GestureRecognizer from "react-native-swipe-gestures";
 import Channel from "../../components/Channel";
 import {withAppContext} from "../../utils/Context";
-import {listUsers} from "../../utils/Utils"
+import {handleNotificationAction, listUsers} from "../../utils/Utils"
 import {useSelector} from "react-redux";
+import {StatusBar} from "expo-status-bar";
 
 const ChannelScreen = props => {
     const {route, navigation, sendbird, currentUser} = props;
@@ -116,7 +117,7 @@ const ChannelScreen = props => {
         dispatch({type: 'error', payload: {error: null}});
         refresh();
 
-        // handleNotificationAction(navigation, sendbird, currentUser, 'channels').catch(err => console.error(err));
+        handleNotificationAction(navigation, sendbird, currentUser).catch(err => console.error(err));
     };
     connectionHandler.onReconnectFailed = () => {
         dispatch({
@@ -189,7 +190,7 @@ const ChannelScreen = props => {
     };
     return (
         <>
-            <StatusBar backgroundColor="#742ddd" barStyle="light-content" />
+            <StatusBar backgroundColor="#742ddd" />
             <SafeAreaView style={styles.container}>
                 {/* @ts-ignore */}
                 <SearchBar inputContainerStyle={{borderRadius: 24, height: 40}} containerStyle={{backgroundColor: 'transparent'}} placeholder="Search" onChangeText={value => setSearchChats(value)} value={searchChats} lightTheme />

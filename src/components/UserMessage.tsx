@@ -45,7 +45,8 @@ const UserMessage = (props) => {
                         source={{ uri: message.sender.profileUrl }}
                         // @ts-ignore
                         style={styles.profileImage}
-                        PlaceholderContent={<Progress.Circle size={10} indeterminate color='#2a682a'/>}/>
+                        PlaceholderContent={<Progress.Circle size={10} indeterminate color='#2a682a'/>}
+                    />
                 )}
             </View>
             <View style={{ ...styles.content, alignItems: isMyMessage ? 'flex-end' : 'flex-start' }}>

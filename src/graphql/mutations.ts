@@ -2,66 +2,54 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createJob = /* GraphQL */ `
-  mutation CreateJob(
-    $input: CreateJobInput!
-    $condition: ModelJobConditionInput
+export const createTodo = /* GraphQL */ `
+  mutation CreateTodo(
+    $input: CreateTodoInput!
+    $condition: ModelTodoConditionInput
   ) {
-    createJob(input: $input, condition: $condition) {
+    createTodo(input: $input, condition: $condition) {
       id
-      company
-      title
+      name
       description
-      salary
-      image
+      createdAt
+      updatedAt
       _version
       _deleted
       _lastChangedAt
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;
-export const updateJob = /* GraphQL */ `
-  mutation UpdateJob(
-    $input: UpdateJobInput!
-    $condition: ModelJobConditionInput
+export const updateTodo = /* GraphQL */ `
+  mutation UpdateTodo(
+    $input: UpdateTodoInput!
+    $condition: ModelTodoConditionInput
   ) {
-    updateJob(input: $input, condition: $condition) {
+    updateTodo(input: $input, condition: $condition) {
       id
-      company
-      title
+      name
       description
-      salary
-      image
+      createdAt
+      updatedAt
       _version
       _deleted
       _lastChangedAt
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;
-export const deleteJob = /* GraphQL */ `
-  mutation DeleteJob(
-    $input: DeleteJobInput!
-    $condition: ModelJobConditionInput
+export const deleteTodo = /* GraphQL */ `
+  mutation DeleteTodo(
+    $input: DeleteTodoInput!
+    $condition: ModelTodoConditionInput
   ) {
-    deleteJob(input: $input, condition: $condition) {
+    deleteTodo(input: $input, condition: $condition) {
       id
-      company
-      title
+      name
       description
-      salary
-      image
+      createdAt
+      updatedAt
       _version
       _deleted
       _lastChangedAt
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;

@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {Linking, Platform, StyleSheet, Text, View} from 'react-native';
+import {Linking, Platform, View} from 'react-native';
 
 import {Amplify, Auth} from "aws-amplify";
 import config from './src/aws-exports';
 import SendBird from "sendbird";
 import * as WebBrowser from "expo-web-browser";
-import {Quicksand_600SemiBold, useFonts} from '@expo-google-fonts/quicksand';
+import {Quicksand_600SemiBold} from '@expo-google-fonts/quicksand';
 import * as Progress from "react-native-progress";
 import AppLoading from "expo-app-loading";
 import {Provider} from "react-redux";
@@ -19,12 +19,59 @@ import { AppContext } from './src/utils/Context';
 import {PTSans_400Regular, PTSans_700Bold} from "@expo-google-fonts/pt-sans";
 import {Raleway_500Medium} from "@expo-google-fonts/raleway";
 import {Montserrat_400Regular, Montserrat_600SemiBold} from "@expo-google-fonts/montserrat";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import messaging from "@react-native-firebase/messaging";
+import {onRemoteMessage} from "./src/utils/Utils";
+import {useFonts} from "expo-font";
+import OneSignal from 'react-native-onesignal';
+import {Analytics, AWSKinesisProvider} from '@aws-amplify/analytics';
+
+import * as Sentry from 'sentry-expo';
+
+Sentry.init({
+  dsn: 'https://21852623793a4e8285b9194fb7836dcf@o1077479.ingest.sentry.io/6080485',
+  enableInExpoDevelopment: true,
+  debug: true, // Set false for production
+});
 
 Amplify.configure(config);
 
-const appId = '8815EA3C-68EF-4C3B-9579-06145DDED3A3';
+Analytics.addPluggable(new AWSKinesisProvider());
+Analytics.configure({
+  AWSKinesis: {
+    region: config.aws_project_region
+  }
+});
+
+const appId = 'C583A4EA-6CB0-4D55-A0A8-F7518E00E922';
 const sendbird = new SendBird({appId});
 sendbird.setErrorFirstCallback(true);
+
+// Initialize OneSignal
+OneSignal.setLogLevel(6, 0);
+OneSignal.setAppId("c5e15aaf-0dce-48b8-9b56-845407c874f7");
+
+// Prompt push notifications for iOS
+OneSignal.promptForPushNotificationsWithUserResponse(response => {
+  console.log('Prompt response:', response);
+});
+
+// Handle notifications received with app in foreground
+OneSignal.setNotificationWillShowInForegroundHandler(notificationReceivedEvent => {
+  console.log('OneSignal: notification will show in foreground:', notificationReceivedEvent);
+  let notification = notificationReceivedEvent.getNotification();
+  console.log('notification: ', notification);
+  const data = notification.additionalData;
+  console.log('additionalData: ', data);
+  notificationReceivedEvent.complete(notification);
+});
+
+// Handle notification opened
+OneSignal.setNotificationOpenedHandler(notification => {
+  console.log('OneSignal: notification opened', notification);
+});
+
+const savedUserKey = 'savedUser';
 
 const initialState = {
   user: {},
@@ -56,20 +103,45 @@ const App = () => {
     }
   };
 
-  const updateAuthState = (authenticated) => {
-    setAuth(authenticated);
+  const updateAuthState = (isAuth) => {
+    setAuth(isAuth);
   };
 
   const Initializing = () => {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Progress.Circle indeterminate color="#999" />
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <Progress.Circle indeterminate color="#999"/>
         </View>
     )
   }
 
   useEffect(() => {
     checkAuthState();
+
+    AsyncStorage.getItem(savedUserKey)
+        .then(async (user) => {
+          try {
+            if (user) {
+              const authStatus = await messaging().requestPermission();
+              if (authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+                  authStatus === messaging.AuthorizationStatus.PROVISIONAL) {
+                if (Platform.OS === 'ios') {
+                  const token = await messaging().getToken();
+                  await sendbird.registerAPNSPushTokenForCurrentUser(token);
+                } else {
+                  const token = await messaging().getToken();
+                  await sendbird.registerGCMPushTokenForCurrentUser(token);
+                }
+              }
+            }
+          } catch (err) {
+            console.error(err);
+          }
+        }).catch(err => console.error(err));
+
+    if (Platform.OS !== 'ios') {
+      return messaging().onMessage(onRemoteMessage);
+    }
   }, []);
 
   let [fontsLoaded] = useFonts({
@@ -82,7 +154,7 @@ const App = () => {
   });
 
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return <AppLoading/>;
   } else {
     return (
         <Provider store={store}>
@@ -90,9 +162,9 @@ const App = () => {
             <ActionSheetProvider>
               <NavigationContainer>
                 <AppContext.Provider value={initialState}>
-                  {isAuth === 'initializing' && <Initializing />}
-                  {isAuth === 'true' && (<TabNavigator updateAuthState={updateAuthState} />)}
-                  {isAuth === 'false' && (<AuthStackNavigator updateAuthState={updateAuthState} />)}
+                  {isAuth === 'initializing' && <Initializing/>}
+                  {isAuth === 'true' && (<TabNavigator updateAuthState={updateAuthState}/>)}
+                  {isAuth === 'false' && (<AuthStackNavigator updateAuthState={updateAuthState}/>)}
                 </AppContext.Provider>
               </NavigationContainer>
             </ActionSheetProvider>
@@ -101,14 +173,5 @@ const App = () => {
     );
   }
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default App;

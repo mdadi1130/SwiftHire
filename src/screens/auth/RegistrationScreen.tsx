@@ -7,7 +7,7 @@ import * as WebBrowser from 'expo-web-browser';
 
 import {Auth} from "aws-amplify";
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
-import {WINDOW_HEIGHT} from "../../utils/Constants";
+import {COLOR_PRIMARY, WINDOW_HEIGHT} from "../../utils/Constants";
 
 export default function RegistrationScreen(props) {
     const role = props.route.params;
@@ -102,13 +102,13 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 60,
         fontFamily: 'Quicksand_600SemiBold',
-        color: 'white',
+        color: COLOR_PRIMARY,
         textAlign: 'center',
         marginTop: WINDOW_HEIGHT * 0.08
     },
     subtitle: {
         fontSize: 28,
-        color: 'white',
+        color: COLOR_PRIMARY,
         textAlign: 'center',
         margin: WINDOW_HEIGHT * 0.02,
         fontFamily: 'Quicksand_600SemiBold'

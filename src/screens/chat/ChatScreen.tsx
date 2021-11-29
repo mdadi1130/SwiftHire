@@ -27,7 +27,7 @@ import {
 import {connectActionSheet, useActionSheet} from "@expo/react-native-action-sheet";
 import * as Sharing from 'expo-sharing';
 import {StatusBar} from "expo-status-bar";
-import {useHeaderHeight} from "react-native-screens/native-stack";
+import {useHeaderHeight} from "@react-navigation/elements";
 import ImageViewer from "react-native-image-zoom-viewer";
 import Message from "../../components/Message";
 import {COLOR_PRIMARY} from "../../utils/Constants";
@@ -317,7 +317,11 @@ const ChatScreen = props => {
 
     const showMessageOptionsContextMenu = () => {
         const options = ['Camera', 'Photo Library', 'Document', 'Cancel'];
-        const icons = [<Icon name='delete' tvParallaxProperties={true} />, <Icon name='save' tvParallaxProperties={true} />, <Icon name='share' tvParallaxProperties={true} />]
+        const icons = [
+            <Icon name='delete' tvParallaxProperties={true} />,
+            <Icon name='save' tvParallaxProperties={true} />,
+            <Icon name='share' tvParallaxProperties={true} />
+        ];
         const cancelButtonIndex = 3;
 
         showActionSheetWithOptions(
@@ -387,6 +391,7 @@ const ChatScreen = props => {
 
                 <FlatList
                     data={state.messages}
+                    inverted={true}
                     renderItem={({item}) => (
                         <Message
                             key={item.reqId}
@@ -398,15 +403,17 @@ const ChatScreen = props => {
                     )}
                     keyExtractor={(item) => `${item.messageId}` || item.reqId}
                     contentContainerStyle={{flexGrow: 1, paddingVertical: 10}}
-                    ListHeaderComponent={state.error && (
-                        <View style={styles.errorContainer}>
-                            <Text style={styles.error}>{state.error}</Text>
-                        </View>
-                    )}
+                    ListHeaderComponent={
+                        state.error && (
+                            <View style={styles.errorContainer}>
+                                <Text style={styles.error}>{state.error}</Text>
+                            </View>
+                        )
+                    }
                     ListEmptyComponent={
-                        <View style={styles.emptyContainer}>
+                        (<View style={styles.emptyContainer}>
                             <Text style={styles.empty}>{state.empty}</Text>
-                        </View>
+                        </View>)
                     }
                     onEndReached={() => next()}
                     onEndReachedThreshold={0.5}
@@ -435,7 +442,7 @@ const ChatScreen = props => {
                 </View>
             </KeyboardAvoidingView>
         </>
-    )
+    );
 };
 
 const styles = StyleSheet.create({

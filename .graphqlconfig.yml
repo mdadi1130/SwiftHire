@@ -1,6 +1,6 @@
 projects:
-  swifthire:
-    schemaPath: amplify/backend/api/swifthire/build/schema.graphql
+  swiftHireGraphApi:
+    schemaPath: amplify/backend/api/swiftHireGraphApi/build/schema.graphql
     includes:
       - src/graphql/**/*.ts
     excludes:
